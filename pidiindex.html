@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dilnoura 💜</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  background: radial-gradient(circle at top, #1c1c33, #08080f);
+  color:white;
+  font-family:'Inter',sans-serif;
+}
+
+/* LOGIN */
+.login{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.login-box{
+  background:rgba(255,255,255,0.08);
+  padding:40px;
+  border-radius:24px;
+  width:320px;
+  text-align:center;
+  backdrop-filter:blur(12px);
+}
+
+.login-box h1{
+  font-family:'Playfair Display',serif;
+  margin-bottom:20px;
+}
+
+.login-box input{
+  width:100%;
+  padding:12px;
+  margin-bottom:14px;
+  border:none;
+  border-radius:12px;
+  font-size:1rem;
+}
+
+.login-box button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:20px;
+  background:white;
+  color:black;
+  font-size:1rem;
+  cursor:pointer;
+}
+
+.error{
+  display:none;
+  margin-top:12px;
+  color:#ffb3c6;
+}
+
+/* MAIN CONTENT */
+#content{display:none;}
+
+.section{
+  max-width:900px;
+  margin:0 auto;
+  padding:90px 20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.07);
+  border-radius:24px;
+  padding:40px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 30px 60px rgba(0,0,0,0.4);
+  text-align:center;
+}
+
+/* MEMORY BOX */
+.box{
+  width:190px;
+  height:190px;
+  margin:30px auto;
+  background:linear-gradient(135deg,#ffd6f5,#c7b4ff);
+  border-radius:26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;
+  color:#2a143d;
+  cursor:pointer;
+  transition:0.4s ease;
+}
+.box:hover{transform:translateY(-8px) scale(1.04);}
+
+/* MEMORIES */
+.memories{
+  display:none;
+  margin-top:40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.memory{
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeUp 1s forwards;
+}
+
+.memory img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:18px;
+}
+
+.caption{
+  margin-top:10px;
+  font-size:0.95rem;
+  opacity:0.85;
+  font-style:italic;
+}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* MAOMAO */
+.maomao{
+  font-size:4rem;
+  margin-top:50px;
+  animation:bounce 3s infinite;
+}
+
+@keyframes bounce{
+  50%{transform:translateY(-12px);}
+}
+
+footer{
+  text-align:center;
+  opacity:0.5;
+  padding:40px 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="login">
+  <div class="login-box">
+    <h1>Dilnoura</h1>
+    <input id="user" placeholder="Username">
+    <input id="pass" type="password" placeholder="Password">
+    <button onclick="login()">Enter</button>
+    <div class="error" id="error">This space is private.</div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div id="content">
+
+  <div class="section">
+    <div class="card">
+      <h1 style="font-family:'Playfair Display',serif;">Dilnoura</h1>
+      <p style="opacity:0.8;">A memory box kept safe.</p>
+
+      <div class="box" onclick="openBox()">Open</div>
+
+      <div id="memories" class="memories">
+
+        <div class="memory">
+          <img src="images/photo1.jpg">
+          <div class="caption">A moment worth keeping.</div>
+        </div>
+
+        <div class="memory">
+          <img src="images/photo2.jpg">
+          <div class="caption">Between laughter and silence.</div>
+        </div>
+
+        <div class="memory">
+          <img src="images/photo3.jpg">
+          <div class="caption">Still feels warm.</div>
+        </div>
+
+      </div>
+
+      <div class="maomao">🐾</div>
+      <p style="opacity:0.8;">MaoMAO guards what matters.</p>
+    </div>
+  </div>
+
+  <footer>
+    Made only for Bethelhem 🌙
+  </footer>
+
+</div>
+
+<script>
+/* 🔐 CHANGE CREDENTIALS HERE */
+const USERNAME = "IDKWHATTONAME";
+const PASSWORD = "PIDIDI";
+
+function login(){
+  const u = document.getElementById("user").value.trim();
+  const p = document.getElementById("pass").value.trim();
+
+  if(u === USERNAME && p === PASSWORD){
+    document.getElementById("login").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  } else {
+    document.getElementById("error").style.display = "block";
+  }
+}
+
+function openBox(){
+  const box = document.getElementById("memories");
+  box.style.display = "grid";
+  document.querySelectorAll(".memory").forEach((el,i)=>{
+    el.style.animationDelay = (i * 0.4) + "s";
+  });
+}
+</script>
+
+</body>
+</html>
